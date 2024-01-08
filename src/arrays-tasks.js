@@ -126,8 +126,20 @@ function getStringsLength(arr) {
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+function getAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  const initialValue = 0;
+  const sumWithInitial = arr.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialValue
+  );
+
+  const average = sumWithInitial / arr.length;
+
+  // Round to two decimal places
+  return parseFloat(average.toFixed(2));
 }
 
 /**
@@ -143,7 +155,6 @@ function getAverage(/* arr */) {
 function isSameLength(/* arr */) {
   throw new Error('Not implemented');
 }
-
 /**
  * Checks if there are elements in the array where the value is equal to its index.
  *
