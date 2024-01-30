@@ -282,8 +282,12 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+function createNDimensionalArray(n, size) {
+  if (n === 1) {
+    return new Array(size).fill(0);
+  }
+  const innerArray = createNDimensionalArray(n - 1, size);
+  return new Array(size).fill(innerArray);
 }
 
 /**
@@ -331,8 +335,12 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  return arr.reduce(
+    (accumulator, currentValue) =>
+      accumulator + currentValue[0] - currentValue[1],
+    0
+  );
 }
 
 /**
@@ -395,8 +403,13 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  const initialValue = 0;
+  return arr.reduce(
+    (accumulator, currentValue) =>
+      currentValue ? accumulator : accumulator + 1,
+    initialValue
+  );
 }
 
 /**
